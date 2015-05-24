@@ -65,6 +65,9 @@ class CourseList extends Component{
                rowHasChanged: (row1, row2) => row1 !== row2
            })
        };
+       if(this.props.url!=undefined){
+          REQUEST_URL = this.props.url;
+       }
     }
 
     componentDidMount() {
@@ -131,7 +134,7 @@ class CourseList extends Component{
        this.props.navigator.push({
            title: course.title,
            component: CourseDetail,
-           passProps: {course}
+           passProps: {course:course,url:"http://localhost/course/"+course.id}
        });
    }
 }

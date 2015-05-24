@@ -1,7 +1,8 @@
 'use strict';
 var React = require('react-native');
+var CoursePlay = require('./CoursePlay');
 
-var REQUEST_URL = 'http://localhost/course/24';
+var REQUEST_URL = '';
 
 var {
 	Image,
@@ -52,6 +53,7 @@ class CourseDetail extends Component{
                rowHasChanged: (row1, row2) => row1 !== row2
            })
        };
+      REQUEST_URL = this.props.url;
     }
 
     componentDidMount() {
@@ -97,27 +99,27 @@ class CourseDetail extends Component{
 
 	renderCourse(course) {
        return (
-            <TouchableHighlight /*onPress={() => this.playCourse(course)}  underlayColor='#dddddd'*/>
+            <TouchableHighlight onPress={() => this.playCourse(course)}  underlayColor='#dddddd'>
                 <View>
-                    <View style={styles.container}>
+                  <View style={styles.container}>
+                    <View>
                         <Text style={styles.title}>{course.title}</Text>
-                        <View>
-                        	<Text style={styles.summary}>{course.summary}</Text>
-                        </View>
+                        <Text style={styles.summary}>{course.summary}</Text>
                     </View>
-                    <View style={styles.separator} />
+                  </View>
+                  <View style={styles.separator} />
                 </View>
             </TouchableHighlight>
        );
    }
 
-   // playCourse(course) {
-   //     this.props.navigator.push({
-   //         title: course.title,
-   //         component: CourseDetail,
-   //         passProps: {course}
-   //     });
-   // }
+   playCourse(course) {
+       this.props.navigator.push({
+           title: course.title,
+           component: CoursePlay,
+           passProps: {course:course,playUrl:course.mediaUrl}
+       });
+   }
 }
 
 module.exports = CourseDetail;

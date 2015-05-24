@@ -1,7 +1,7 @@
 'use strict';
 var React = require('react-native');
 
-//var BookDetail = require('./BookDetail');
+var CourseList = require('./CourseList');
 
 var REQUEST_URL = 'http://localhost/teachers';
 
@@ -110,7 +110,7 @@ class TeacherList extends Component{
 
 	renderTeacher(teacher) {
        return (
-            <TouchableHighlight>
+            <TouchableHighlight onPress={() => this.showTeacherCourse(teacher)}  underlayColor='#dddddd'>
                 <View>
                     <View style={styles.container}>
                         <Image
@@ -127,13 +127,13 @@ class TeacherList extends Component{
        );
    }
 
-   // showTeacherCourse(teacher) {
-   //     this.props.navigator.push({
-   //         title: course.volumeInfo.title,
-   //         component: TeacherCourse,
-   //         passProps: {teacher}
-   //     });
-   // }
+   showTeacherCourse(teacher) {
+       this.props.navigator.push({
+           title: teacher.truename+"所授课程列表",
+           component: CourseList,
+           passProps: {teacher:teacher,url:"http://localhost/teacher/"+teacher.id+"/course"}
+       });
+   }
 }
 
 module.exports = TeacherList;
