@@ -2,8 +2,9 @@
 var React = require('react-native');
 
 var CourseDetail = require('./CourseDetail');
+var Settings = require('./Settings');
 
-var REQUEST_URL = 'http://localhost/course';
+var REQUEST_URL = Settings.baseUrl+"/course";
 
 var {
 	Image,
@@ -65,7 +66,7 @@ class CourseList extends Component{
                rowHasChanged: (row1, row2) => row1 !== row2
            })
        };
-       if(this.props.url!=undefined){
+       if(this.props.url != undefined){
           REQUEST_URL = this.props.url;
        }
     }
@@ -94,8 +95,7 @@ class CourseList extends Component{
 			<ListView
             dataSource={this.state.dataSource}
             renderRow={this.renderCourse.bind(this)}
-            style={styles.listView}
-            />
+            style={styles.listView}/>
 		);
 	}
 
@@ -134,7 +134,7 @@ class CourseList extends Component{
        this.props.navigator.push({
            title: course.title,
            component: CourseDetail,
-           passProps: {course:course,url:"http://localhost/course/"+course.id}
+           passProps: {course:course,url:Settings.baseUrl+"/course/"+course.id}
        });
    }
 }

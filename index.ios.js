@@ -8,6 +8,7 @@ var React = require('react-native');
 
 var Course = require('./App/Course');
 var Teacher = require('./App/Teacher');
+var More = require('./App/More');
 
 var {
     AppRegistry,
@@ -20,7 +21,7 @@ class hcxy extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            selectedTab: 'course'
+            selectedTab: 'featured'
         };
     }
 
@@ -28,24 +29,34 @@ class hcxy extends Component{
         return (
             <TabBarIOS selectedTab={this.state.selectedTab}>
                 <TabBarIOS.Item
-                    selected={this.state.selectedTab === 'course'}
+                    selected={this.state.selectedTab === 'featured'}
                     icon={{uri:'featured'}}
                     onPress={() => {
                         this.setState({
-                            selectedTab: 'course'
+                            selectedTab: 'featured'
                         });
                     }}>
                     <Course/>
                 </TabBarIOS.Item>
                 <TabBarIOS.Item
-                    selected={this.state.selectedTab === 'teacher'}
+                    selected={this.state.selectedTab === 'search'}
                     icon={{uri:'search'}}
                     onPress={() => {
                         this.setState({
-                            selectedTab: 'teacher'
+                            selectedTab: 'search'
                         });
                     }}>
                     <Teacher/>
+                </TabBarIOS.Item>
+                <TabBarIOS.Item
+                    selected={this.state.selectedTab === 'more'}
+                    icon={{uri:'more'}}
+                    onPress={() => {
+                        this.setState({
+                            selectedTab: 'more'
+                        });
+                    }}>
+                    <More/>
                 </TabBarIOS.Item>
             </TabBarIOS>
         );

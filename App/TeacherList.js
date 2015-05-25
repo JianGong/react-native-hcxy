@@ -2,8 +2,9 @@
 var React = require('react-native');
 
 var CourseList = require('./CourseList');
+var Settings = require('./Settings');
 
-var REQUEST_URL = 'http://localhost/teachers';
+var REQUEST_URL = Settings.baseUrl+'/teachers';
 
 var {
 	Image,
@@ -131,7 +132,7 @@ class TeacherList extends Component{
        this.props.navigator.push({
            title: teacher.truename+"所授课程列表",
            component: CourseList,
-           passProps: {teacher:teacher,url:"http://localhost/teacher/"+teacher.id+"/course"}
+           passProps: {teacher:teacher,url:Settings.baseUrl+"/teacher/"+teacher.id+"/course"}
        });
    }
 }
